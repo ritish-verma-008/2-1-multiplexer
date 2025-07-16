@@ -1,0 +1,34 @@
+module mux_2_1(a,b,sel,y,D1_AN,led1, led2,led3);
+input a,b,sel;
+output reg [6:0]y;
+output reg [3:0]D1_AN;
+output  reg led1 ,led2,led3;
+always@(*) begin
+    if(sel) begin
+        y = (b) ? 7'b1111001 : 7'b1000000;
+        D1_AN=4'b1101;
+        if (y==7'b1111001) begin
+        led1=1'b0;
+        led2=1'b1;
+        end
+        else begin 
+        
+        led1=1'b1;
+        led2=1'b0;
+        
+        end
+        end else begin
+       y = (a) ? 7'b1111001 : 7'b1000000; 
+        D1_AN=4'b1110;
+        if (y==7'b1111001) begin
+        led1=1'b1;
+        led2=1'b0;
+        end
+        else begin 
+        led1=1'b0;
+        led2=1'b1;
+        end 
+    end
+    
+end
+endmodule    
